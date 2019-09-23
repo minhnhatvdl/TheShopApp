@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,9 +7,28 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {useDispatch} from 'react-redux';
 import {color} from '../../constants/color';
+import {addToCart} from '../../store/actions/cart';
+import ProductItem from '../../models/ProductItem';
 
-const Product = ({id, name, imageUrl, price, navigation}) => {
+const Product = ({
+  id,
+  ownerId,
+  name,
+  imageUrl,
+  description,
+  price,
+  navigation,
+}) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = useCallback(() => {
+    dispatch(
+      addToCart(
+        new ProductItem(id, ownerId, name, imageUrl, description, price),
+      ),
+    );
+  }, [dispatch, id, ownerId, name, imageUrl, description, price]);
   return (
     <TouchableOpacity
       onPress={() =>
@@ -31,7 +50,11 @@ const Product = ({id, name, imageUrl, price, navigation}) => {
               navigation.navigate('Product', {productId: id, productName: name})
             }
           />
-          <Button title="Add" color={color.primaryColor} />
+          <Button
+            title="Add"
+            color={color.primaryColor}
+            onPress={handleAddToCart}
+          />
         </View>
       </View>
     </TouchableOpacity>

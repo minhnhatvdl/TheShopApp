@@ -1,7 +1,7 @@
-import Product from '../models/Product';
+import ProductItem from '../models/ProductItem';
 
 const products = [
-  new Product(
+  new ProductItem(
     'p1',
     'u1',
     'Red Shirt',
@@ -9,7 +9,7 @@ const products = [
     'A red t-shirt, perfect for days with non-red weather.',
     29.99,
   ),
-  new Product(
+  new ProductItem(
     'p2',
     'u1',
     'Blue Carpet',
@@ -17,7 +17,7 @@ const products = [
     'Fits your red shirt perfectly. To stand on. Not to wear it.',
     99.99,
   ),
-  new Product(
+  new ProductItem(
     'p3',
     'u2',
     'Coffee Mug',
@@ -25,7 +25,7 @@ const products = [
     'Can also be used for tea!',
     8.99,
   ),
-  new Product(
+  new ProductItem(
     'p4',
     'u3',
     'The Book - Limited Edition',
@@ -33,7 +33,7 @@ const products = [
     "What the content is? Why would that matter? It's a limited edition!",
     15.99,
   ),
-  new Product(
+  new ProductItem(
     'p5',
     'u3',
     'PowerBook',
@@ -41,7 +41,7 @@ const products = [
     'Awesome hardware, crappy keyboard and a hefty price. Buy now before a new one is released!',
     2299.99,
   ),
-  new Product(
+  new ProductItem(
     'p6',
     'u1',
     'Pen & Paper',
