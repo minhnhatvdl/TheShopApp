@@ -1,28 +1,40 @@
 import React from 'react';
-import {StyleSheet, View, Text, Button, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {color} from '../../constants/color';
 
 const Product = ({id, name, imageUrl, price, navigation}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{uri: imageUrl}} />
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Product', {productId: id, productName: name})
+      }>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{uri: imageUrl}} />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.price}>{price}</Text>
+        </View>
+        <View style={styles.listButtons}>
+          <Button
+            title="View"
+            color={color.primaryColor}
+            onPress={() =>
+              navigation.navigate('Product', {productId: id, productName: name})
+            }
+          />
+          <Button title="Add" color={color.primaryColor} />
+        </View>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>{price}</Text>
-      </View>
-      <View style={styles.listButtons}>
-        <Button
-          title="View"
-          color={color.primaryColor}
-          onPress={() =>
-            navigation.navigate('Product', {productId: id, productName: name})
-          }
-        />
-        <Button title="Add" color={color.primaryColor} />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
