@@ -1,20 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import ListProducts from '../../components/shop/ListProducts';
 
 const ListProductsScreen = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>List Products Screen</Text>
-    </View>
-  );
+  return <ListProducts />;
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default ListProductsScreen;
