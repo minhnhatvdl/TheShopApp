@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text, Button, Image} from 'react-native';
 import {color} from '../../constants/color';
 
-const Product = ({id, ownerId, name, imageUrl, description, price}) => {
+const Product = ({id, name, imageUrl, price, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -13,7 +13,13 @@ const Product = ({id, ownerId, name, imageUrl, description, price}) => {
         <Text style={styles.price}>{price}</Text>
       </View>
       <View style={styles.listButtons}>
-        <Button title="View" color={color.primaryColor} />
+        <Button
+          title="View"
+          color={color.primaryColor}
+          onPress={() =>
+            navigation.navigate('Product', {productId: id, productName: name})
+          }
+        />
         <Button title="Add" color={color.primaryColor} />
       </View>
     </View>
@@ -37,11 +43,11 @@ const styles = StyleSheet.create({
     height: '65%',
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
+    overflow: 'hidden',
   },
   image: {
     width: '100%',
     height: '100%',
-    overflow: 'hidden',
   },
   details: {
     flexDirection: 'column',
