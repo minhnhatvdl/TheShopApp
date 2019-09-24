@@ -1,37 +1,37 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useCallback} from 'react';
+import {StyleSheet, View, Text, ScrollView, Image, Button} from 'react-native';
 import {color} from '../../constants/color';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {addToCart} from '../../store/actions/cart';
+import ProductItem from '../../models/ProductItem';
 
-const ProductDetail = ({id, name, imageUrl, description, price}) => {
+const ProductDetail = ({id, ownerId, name, imageUrl, description, price}) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = useCallback(() => {
+    dispatch(
+      addToCart(
+        new ProductItem(id, ownerId, name, imageUrl, description, price),
+      ),
+    );
+  }, [dispatch, id, ownerId, name, imageUrl, description, price]);
   return (
     <ScrollView>
       <Image style={styles.image} source={{uri: imageUrl}} />
       <View style={styles.details}>
-        <Text style={styles.price}>{price}</Text>
+        <Text style={styles.price}>${price}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
-      <TouchableOpacity>
-        <Ionicons
-          style={styles.icon}
-          name="ios-cart"
-          size={48}
-          color={color.primaryColor}
-        />
-      </TouchableOpacity>
+      <Button
+        style={styles.button}
+        title="Add to cart"
+        color={color.primaryColor}
+        onPress={handleAddToCart}
+      />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
   image: {
     height: 300,
   },
@@ -49,9 +49,6 @@ const styles = StyleSheet.create({
     color: color.primaryColor,
     fontSize: 16,
     fontStyle: 'italic',
-    textAlign: 'center',
-  },
-  icon: {
     textAlign: 'center',
   },
 });

@@ -1,20 +1,18 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import HeaderRightCart from '../../components/shop/HeaderRightCart';
+import HeaderLeftMenu from '../../components/shop/HeaderLeftMenu';
+import ListOrders from '../../components/shop/ListOrders';
 
 const ListOrdersScreen = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>List Orders Screen</Text>
-    </View>
-  );
+  return <ListOrders />;
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+ListOrdersScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: 'Orders',
+    headerRight: <HeaderRightCart navigation={navigation} />,
+    headerLeft: <HeaderLeftMenu navigation={navigation} />,
+  };
+};
 
 export default ListOrdersScreen;

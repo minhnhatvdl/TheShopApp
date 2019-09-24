@@ -1,20 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import Cart from '../../components/shop/Cart';
 
-const CartScreen = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>Cart Screen</Text>
-    </View>
-  );
+const CartScreen = ({navigation}) => {
+  return <Cart navigation={navigation} />;
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+CartScreen.navigationOptions = {
+  headerTitle: 'Cart',
+};
 
 export default CartScreen;

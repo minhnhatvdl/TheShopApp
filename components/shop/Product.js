@@ -40,7 +40,7 @@ const Product = ({
         </View>
         <View style={styles.details}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>{price}</Text>
+          <Text style={styles.price}>${price}</Text>
         </View>
         <View style={styles.listButtons}>
           <Button
