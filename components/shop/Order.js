@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
 import {color} from '../../constants/color';
+import ProductShortDetail from './ProductShortDetail';
 // get a readable date
 const getReadableDate = date => {
   return date.toLocaleDateString('en-EN', {
@@ -14,13 +15,22 @@ const getReadableDate = date => {
 };
 
 const Order = ({id, cart, date}) => {
+  const [showDetail, setShowDetail] = useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.detail}>
-        <Text style={styles.total}>${cart.totalAmount}</Text>
+        <Text style={styles.total}>${+cart.totalAmount.toFixed(2)}</Text>
         <Text style={styles.date}>{getReadableDate(date)}</Text>
       </View>
-      <Button title="Show details" color={color.primaryColor} />
+      <Button
+        title={showDetail ? 'Hide details' : 'Show details'}
+        color={color.primaryColor}
+        onPress={() => setShowDetail(state => !state)}
+      />
+      {showDetail &&
+        Object.values(cart.items).map(e => (
+          <ProductShortDetail key={e.product.id} {...e} />
+        ))}
     </View>
   );
 };
@@ -29,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: color.primaryColor,
     shadowOpacity: 0.25,
     shadowRadius: 10,
@@ -47,7 +57,7 @@ const styles = StyleSheet.create({
   total: {
     fontSize: 16,
     fontStyle: 'italic',
-    color: color.thirdColor,
+    color: color.primaryColor,
   },
   date: {
     fontSize: 16,
